@@ -10,9 +10,6 @@ const schema = Joi.object({
     password: Joi.string().required(),
 });
 
-
-
-
 export default async (req, res) => {
     await ConnectDB();
 
@@ -29,8 +26,8 @@ export default async (req, res) => {
         if (!isMatch) return res.status(401).json({ success: false, message: "Incorrect Password" });
 
         const token = jwt.sign({ id: checkUser._id, email: checkUser.email }, process.env.JWT_SECREAT, { expiresIn: '1d' });
-        const finalData = {token , user : checkUser}
-        return res.status(200).json({ success: true, message: "Login Successfull",  finalData})
+        const finalData = { token, user: checkUser }
+        return res.status(200).json({ success: true, message: "Login Successfull", finalData })
 
     } catch (error) {
         console.log('Error in register (server) => ', error);

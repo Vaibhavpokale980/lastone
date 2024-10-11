@@ -44,9 +44,9 @@ export const forget_password = async (formData) => {
             body: JSON.stringify(formData),
         })
         const data = res.json();
+        console.log(data,"  mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm")
         return data;
     } catch (error) {
         console.log('error in forget Password (service) => ', error);
     }
 }
-
