@@ -25,7 +25,8 @@ export default async (req, res) => {
         if (!isMatch) return res.status(401).json({ success: false, message: "Incorrect Password" });
 
         // Using direct values for JWT_SECRET and other constants
-        const token = jwt.sign({ id: checkUser._id, email: checkUser.email }, process.env.NEXT_PUBLIC_JWT_SECREAT, { expiresIn: '1d' });
+        const token = jwt.sign({ id: checkUser._id, email: checkUser.email }, process.env.JWT_SECRET || '123456789vaibhav'
+, { expiresIn: '1d' });
         const finalData = { token, user: checkUser };
         return res.status(200).json({ success: true, message: "Login Successful", finalData });
 
