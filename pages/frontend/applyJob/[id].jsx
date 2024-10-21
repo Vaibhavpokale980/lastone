@@ -12,7 +12,7 @@ export default function ApplyJob() {
     const { id } = router.query
     const activeUser = useSelector(state => state.User.userData)
     const [formikData, setFormikData] = useState({ name: '', email: activeUser?.email , about: '', job: id, user: activeUser?._id })
-    const [file, setFile] = useState(null)
+    const [file, setFile] = useState('')
     const [error, setError] = useState({ name: '', email: "", about: '', job: '', user: '', cv: '' });
 
 
@@ -48,15 +48,15 @@ export default function ApplyJob() {
         }
 
         if (!file) {
-            setError({ ...error, cv: "Please Upload CV" })
+            setError({ ...error, cv: "Please Upload CV link" })
             return;
         }
 
-        // Check if the file type is PDF
-        if (file.type !== 'application/pdf') {
-            setError({ ...error, cv: "Please Upload a PDF file" })
-            return;
-        }
+        // // Check if the file type is PDF
+        // if (file.type !== 'application/pdf') {
+        //     setError({ ...error, cv: "Please Upload a PDF file" })
+        //     return;
+        // }
 
 
 
@@ -67,7 +67,9 @@ export default function ApplyJob() {
         form.append('about', about);
         form.append('job', job);
         form.append('user', user);
-        form.append('cv', file);
+        form.append('cv', file.about);
+
+        console.log(file.about,"mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm");
 
 
         const res = await apply_job(form);
@@ -115,8 +117,8 @@ export default function ApplyJob() {
                         }
                     </div>
                     <div className='w-full mb-4  flex flex-col items-start justify-center'>
-                        <label htmlFor="file" className='mb-1 text-base font-semibold'>Upload CV :</label>
-                        <input accept="application/pdf" name='cv' onChange={(e) => setFile(e.target.files[0])} type="file" id='file' className='w-full py-2 px-3 mb-2 border border-indigo-600 rounded' placeholder='Enter Email' />
+                        <label htmlFor="file" className='mb-1 text-base font-semibold'>CV LINK :</label>
+                        <input name='cv' onChange={(e) => setFile({ ...file,about:e.target.value})} type="text" id='file' className='w-full py-2 px-3 mb-2 border border-indigo-600 rounded' placeholder='Enter Drive Link' />
                         {
                             error.cv && <p className="text-sm text-red-500">{error.cv}</p>
                         }
