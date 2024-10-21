@@ -50,29 +50,29 @@ const applyToJob =  async (req, res) => {
                 throw err
             }
 
-            const oldPath = files.cv.filepath;
-            const originalFileName  = files.cv.originalFilename
+            // const oldPath = files.cv.filepath;
+            // const originalFileName  = files.cv.originalFilename
             
 
 
-            const fileExtension = path.extname(originalFileName);
-            const randomString = crypto.randomBytes(6).toString('hex');
-            const fileName = `${originalFileName.replace(fileExtension, '')}_${randomString}${fileExtension}`;
+            // const fileExtension = path.extname(originalFileName);
+            // const randomString = crypto.randomBytes(6).toString('hex');
+            // const fileName = `${originalFileName.replace(fileExtension, '')}_${randomString}${fileExtension}`;
 
 
-            const newPath = path.join(process.cwd(), 'public', 'uploads', fileName);
+            // const newPath = path.join(process.cwd(), 'public', 'uploads', fileName);
 
 
             // Read the file
-            fs.readFile(oldPath, function (err, data) {
-                if (err) throw err;
-                fs.writeFile(newPath, data, function (err) {
-                    if (err) throw err;
-                });
-                fs.unlink(oldPath, function (err) {
-                    if (err) throw err;
-                });
-            });
+            // fs.readFile(oldPath, function (err, data) {
+            //     if (err) throw err;
+            //     fs.writeFile(newPath, data, function (err) {
+            //         if (err) throw err;
+            //     });
+            //     fs.unlink(oldPath, function (err) {
+            //         if (err) throw err;
+            //     });
+            // });
 
 
 
@@ -83,10 +83,10 @@ const applyToJob =  async (req, res) => {
                 about: fields.about,
                 job: fields.job,
                 user: fields.user,
-                cv: fileName,
+                cv: fields.cv,
             };
 
-            const {name , email , about , job , user} = jobApplication;
+            const {name , email , about , job , user,cv} = jobApplication;
 
 
             const { error } = schema.validate({name , email , about , job , user});
