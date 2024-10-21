@@ -1,4 +1,5 @@
 import { change_application_status } from '@/Services/job';
+import { data } from 'autoprefixer';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react'
 import DataTable from 'react-data-table-component';
@@ -14,6 +15,7 @@ export default function ApplicationsDataTable({ application }) {
 
     useEffect(() => {
         setData(application)
+        // console.log(data,"mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm");
     }, [application])
 
 
@@ -48,15 +50,12 @@ export default function ApplicationsDataTable({ application }) {
         }
     }
 
-    const handleDownloadCV = async (name) => {
-        const fileUrl = `/uploads/${name}`;
-        const link = document.createElement('a');
-        link.href = fileUrl;
-        link.download = 'cv.pdf';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    }
+    const handleOpenCV = (name) => {
+        // const fileUrl = `/uploads/${name}`;
+        console.log(name,"thi id jnd;kjlnjlk");
+        window.open(name, '_blank');  // Opens the file in a new tab
+    };
+    
 
     
 
@@ -75,7 +74,7 @@ export default function ApplicationsDataTable({ application }) {
         },
         {
             name: 'CV',
-            selector: row => <button onClick={() => handleDownloadCV(row?.cv)} className=' w-20 py-2 text-xs text-indigo-600 hover:text-white my-2 hover:bg-indigo-600 border border-indigo-600 rounded transition-all duration-700'>Download CV</button>
+            selector: row => <button onClick={() => handleOpenCV(row?.cv)} className=' w-20 py-2 text-xs text-indigo-600 hover:text-white my-2 hover:bg-indigo-600 border border-indigo-600 rounded transition-all duration-700'>View CV</button>
         },
         {
             name: 'Status',
