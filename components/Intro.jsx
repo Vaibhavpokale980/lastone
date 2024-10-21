@@ -28,8 +28,8 @@ export default function Intro() {
     <>
       <div className='w-full  h-full flex items-center lg:justify-start py-24 justify-center flex-wrap  '>
         <div className='lg:w-3/6 w-full sm:p-2 h-full my-2 flex items-center justify-center px-4 md:items-start md:justify-start md:p-20 flex-col '>
-          <h1 className='md:text-6xl text-2xl sm:text-2xl font-extrabold mb-4 text-black '>To Choose <span className='text-indigo-600'>Right Jobs.</span> </h1>
-          <p className='md:text-lg sm:text-sm text-xs mb-20 text-gray-400'>2400 Peoples are daily search in this portal, 100 user added job portal!</p>
+          <h1 className='md:text-6xl text-2xl sm:text-2xl font-extrabold mb-4 text-black '>To get <span className='text-indigo-600'>Dream Jobs.</span> </h1>
+          <p className='md:text-lg sm:text-sm text-xs mb-20 text-gray-400'>3200 Peoples are daily search in this portal, 200 user added job portal!</p>
           <div className='bg-white flex-col mb-6 w-full md:px-4   py-4 flex sm:flex-row items-center justify-center'>
             <BiSearchAlt className='text-2xl text-indigo-600 mx-2 hidden sm:flex' />
             <input onChange={(e) => setSearch(e.target.value)} type="text" placeholder='Search Jobs with Job categories like marketing ...' className='xs:w-full w-3/4  h-full px-2 bg-gray-200 text-base py-3 outline-none' />
